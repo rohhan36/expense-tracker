@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms</title>
+</head>
+<body>
+    <h1>Form</h1>
+
+    <form action="">
+        <p>
+            <label for="fname">First Name: </label>
+            <input type="text" name="firstName" id="fname" >
+        </p>
+
+        <p>
+            <label for="lname">Last Name: </label>
+            <input type="text" name="lastName" id="lname" >
+        </p>
+
+        <p>
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" >
+        </p>    
+        
+        <p>
+            <label for="contact">Contact No:</label>
+            <input type="number" name="contact" id="contact" min="1111111111" maxlength="9999999999" >
+        </p>
+        
+        <p>
+            <input type="checkbox" name="WatchAnime" id="WatchAnime">
+            <label for="WatchAnime"> Do you Watch Anime? </label>
+        </p>
+
+        <p>
+            <label for="animeType"> What kind of anime do you like?</label> <br>
+            <input type="radio" name="animeType" id="" value="rom-com">RomCom <br>
+            <input type="radio" name="animeType" id="" value="hight-school">High School <br>
+            <input type="radio" name="animeType" id="" value="harem">Harem <br>
+        </p>
+
+        <p>
+            <label for="watch-period">How often do you watch anime?</label>
+            <select name="" id="watch-period">
+                <option value="">Weekly</option>
+                <option value="">Daily</option>
+                <option value="">Monthly</option>
+            </select>
+        </p>
+
+        <p>
+            <label for="love-lvl">How much do you like watching anime?</label>
+            <input type="range" min="1" max="10" name="LoveLevel" id="love-lvl">
+        </p>
+
+        <button>Submit</button>
+        <button type="reset">Reset</button>
+    </form>
+
+
+    <p>
+        <form action="https://www.google.com/search" target="_blank">        
+            <input type="text" name="q" id="">
+            <button type="submit" >Search Google</button>
+        </form>
+    </p>
+    <p>
+        <form action="https://www.reddit.com/search" target="_blank">        
+            <input type="text" name="q" id="">
+            <button type="submit" >Search Reddit</button>
+        </form>
+    </p>
+    <p>
+        <form action="https://www.youtube.com/search" target="_blank">        
+            <input type="text" name="search_query" id="">
+            <button type="submit" >Search YouTube</button>
+        </form>
+    </p>
+
+    <hr>
+
+    <h1>Marathone Form</h1>
+    <form action="">
+
+        <div>
+            <label for="FirstName">First Name: </label>
+        <input type="text" name="FirstName" id="FirstName">
+        
+        
+        <label for="LastName">Last Name: </label>
+        <input type="text" name="LastName" id="LastName">
+        </div>
+        <br>
+
+        <div>
+            <p> Select your age group: </p>
+            <input type="radio" id="under18"  name="ageGrp" value="u18">
+            <label for="under18">Under 18</label>
+            <br>
+
+            <input type="radio" id="18-25" name="ageGrp" value="18-25">
+            <label for="18-25">18-25</label>
+            <br>
+
+            <input type="radio" id="26-35" name="ageGrp" value="26-35">
+            <label for="26-35">26-35</label>
+            <br>
+
+            <input type="radio" id="36-45" name="ageGrp" value="36-45">
+            <label for="36-45">36-45</label>
+            <br>
+
+            <input type="radio" id="45+" name="ageGrp" value="45+">
+            <label for="45+">45+</label>
+        </div>
+
+
+        <div>
+            <label for="race">Select your race</label>
+            <select name="raceType" id="race">
+                <option value="">select</option>
+                <option value="Fun_Run">Fun Run</option>
+                <option value="Race_100m">Race 100m</option>
+                <option value="Race_50m">Race 50m</option>
+            </select>
+        </div>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+
+</html>

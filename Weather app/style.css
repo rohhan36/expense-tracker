@@ -1,0 +1,148 @@
+*{
+    margin : 0;
+    padding : 0;
+    font-family: 'Nunito', sans-serif;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #370D46;
+}
+
+.card {
+    width: 90%;
+    max-width: 500px;
+    background: linear-gradient(to left top, #2e22ac, #7320a9, #9e26a5, #c134a1, #dd499d);
+    color: #fff;
+    margin: 100px auto 0;
+    border-radius: 20px;
+    padding: 40px 35px;
+    text-align: center;
+}
+
+.search{
+    width : 100%;
+    display: flex;
+    align-items: left;
+    justify-content: space-evenly;
+}
+
+.auto-complete-wrapper input{
+    border: 0;
+    outline: 0;
+    background-color: #ebfffc;
+    color: #555;
+    padding: 10px;
+    padding-left: 20px; 
+    padding-right: 80px; 
+    height: 60px;
+    border-radius: 15px;
+    flex: 1;
+    margin-right: 16px;
+    font-size: 18px;
+}
+
+.auto-complete-wrapper{
+    position: relative;
+}
+
+#main-button{
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+    border-radius: 50%;  
+}
+
+button {
+    cursor: pointer;
+}
+
+.search button :hover{
+    transform: scale(.9);  
+}
+
+.weather-icon{
+    width: 20em;
+    margin-top: 30px;
+}
+
+.weather h1{
+    font-size: 80px;
+    font-weight: 500;
+}
+
+.weather h2 {
+    font-size: 45px;
+    font-weight: 400;
+    margin-top: -10px;
+}
+
+.details{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    font-size: larger;
+}
+
+.col{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    background-color: transparent;
+}
+
+.details-icon{
+    margin-right: 10px;
+    height: 3em;
+}
+
+.details-title{
+    font-size: 1.8em;
+    margin-bottom: 5px;
+}
+
+.details-text{
+    font-size: .8em;
+}
+
+.weather {
+    display: none;
+}
+
+.error{
+    text-align: center;
+    margin: 50px;
+    display: none;
+}
+
+.auto-complete-list {
+    background-color: #ebfffc;
+    list-style: none;
+    padding: unset;
+    margin-top: -12px;
+    margin-left: 0px;
+    position: absolute;
+    width: 95%;
+
+}
+
+.auto-complete-list li :hover{
+    background-color: #f0f0f0;
+}
+
+.auto-complete-list button{
+    font-size: large;
+    border: unset;
+    background-color: unset;
+    cursor: pointer;
+    padding: 1px 10px;
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 0.5em;
+}
+
