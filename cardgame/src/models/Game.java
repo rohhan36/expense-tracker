@@ -104,67 +104,79 @@ public class Game {
 
     public void makeMove() {
 
-        if(isActionCard()) {
+        //if it's an action card and this is Not the 1st move of the game
+        if(isActionCard() && discardPile.getDiscardPile().size() > 1) {
 
             Card topCard = discardPile.getDiscardPile().peek();
             if(topCard.getValue().equals(Value.ACE)) {
                 changeStrike();
 
             } else if (topCard.getValue().equals(Value.KING)) {
-                this.direction = this.direction.toggle(direction);
+                this.toggleDirection();
                 changeStrike();
 
             }  else if (topCard.getValue().equals(Value.QUEEN)) {
                 for(int i = 0; i < 2; i++) {
-                    try {
-                        players.get(nextPlayerIndex).getHand().add(drawPile.drawCard());
-                    } catch (Exception e){
-                        this.gameState = GameState.DRAW;
-                    }
+                    players.get(nextPlayerIndex).getHand().add(drawPile.drawCard());
                 }
                 System.out.println("You have drawn 2 card");
+                System.out.println();
 
             } else {
                 for(int i = 0; i < 4; i++) {
-                    try {
-                        players.get(nextPlayerIndex).getHand().add(drawPile.drawCard());
-                    } catch (Exception e) {
-                        this.gameState = GameState.DRAW;
-                    }
+                    players.get(nextPlayerIndex).getHand().add(drawPile.drawCard());
                 }
                 System.out.println("You have drawn 4 card");
+                System.out.println();
             }
         }
 
+        showHand();
+
+        //get input for next card play
         Player player = players.get(nextPlayerIndex);
         int cardInd = player.makeMove();
 
+        //draw new card
         if(cardInd == 0) {
-            try {
-                player.getHand().add(drawPile.drawCard());
-            } catch (Exception e){
-                this.gameState = GameState.DRAW;
-            }
+            player.getHand().add(drawPile.drawCard());
 
-        } else {
+            //card index should be valid
+        } else if(cardInd <= player.getHandSize()) {
             Card dropCard = player.getHand().get(cardInd - 1);
 
             if(!discardPile.checkCard(dropCard)){
-                System.out.println("Your card didn't match, Please choose a valid card");
+                System.out.println("*********!! Your card didn't match, Please choose a valid card !!*********");
+                showTopCard();
                 makeMove();
             }
 
             discardPile.getDiscardPile().push(dropCard);
             player.getHand().remove(cardInd - 1);
+
+        } else {
+            System.out.println("*********!! Please enter a valid card index !!*********");
+            System.out.println();
+
+            showTopCard();
+            makeMove();
         }
+    }
+
+    private void toggleDirection() {
+        if(this.direction == Direction.POSITIVE)
+            this.direction = Direction.NEGATIVE;
+
+        else
+            this.direction = Direction.POSITIVE;
     }
 
     public void changeStrike() {
         if(direction.equals(Direction.POSITIVE))
-            nextPlayerIndex = (nextPlayerIndex + 1) % players.size();
+            this.nextPlayerIndex = (this.nextPlayerIndex + 1) % this.players.size();
 
         else
-            nextPlayerIndex = (nextPlayerIndex - 1 + players.size()) % players.size();
+            this.nextPlayerIndex = (this.nextPlayerIndex - 1 + this.players.size()) % players.size();
     }
 
     public boolean isActionCard() {

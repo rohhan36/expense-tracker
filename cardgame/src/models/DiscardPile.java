@@ -32,5 +32,6 @@ public class DiscardPile {
         System.out.print("--------------------(");
         System.out.print("Current card is " + currCard.getValue() + " of " + currCard.getCardSuit());
         System.out.print(")--------------------");
+        System.out.println();
     }
 }

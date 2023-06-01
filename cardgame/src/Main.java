@@ -54,11 +54,12 @@ public class Main {
                 gameController.showTopCard(game);
                 System.out.println();
 
+                gameController.makeMove(game);
+
                 //shows the hand of next player
-                gameController.showHand(game);
+                //gameController.showHand(game);
                 System.out.println();
 
-                gameController.makeMove(game);
                 gameController.isWinner(game);
                 gameController.changeStrike(game);
             }

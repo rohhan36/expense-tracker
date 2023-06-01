@@ -16,9 +16,10 @@ public class DrawPile {
             drawPile.push(card);
         }
     }
-    public Card drawCard() throws DrawPileEmptyException {
+    public Card drawCard(){
         if(drawPile.isEmpty()) {
-            throw new DrawPileEmptyException();
+            System.out.println("----- GAME OVER | DRAW PILE EMPTY | NO ONE WINS");
+            System.exit(0);
         }
 
         return drawPile.pop();
