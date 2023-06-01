@@ -14,6 +14,7 @@ public class Game {
     private DiscardPile discardPile;
     private int nextPlayerIndex;
     private Player winner;
+    private Card prevTopCard;
 
     public Game(){}
 
@@ -27,11 +28,7 @@ public class Game {
 
         Card first = drawPile.drawCard();
         discardPile.push(first);
-    }
-
-    public void validatePlayerCount(int playerCount) throws InvalidPlayerCountException{
-        if(playerCount < 2 || playerCount > 4)
-            throw new InvalidPlayerCountException();
+        this.prevTopCard = first;
     }
 
     public Game build() throws DrawPileEmptyException {
@@ -105,26 +102,39 @@ public class Game {
     public void makeMove() {
 
         //if it's an action card and this is Not the 1st move of the game
-        if(isActionCard() && discardPile.getDiscardPile().size() > 1) {
+        if(isActionCard() && discardPile.getDiscardPile().size() > 1 && discardPile.checkCard(prevTopCard)) {
 
             Card topCard = discardPile.getDiscardPile().peek();
             if(topCard.getValue().equals(Value.ACE)) {
+                System.out.println(this.direction);
+                System.out.println(this.nextPlayerIndex);
+
                 changeStrike();
 
+                System.out.println(this.direction);
+                System.out.println(this.nextPlayerIndex);
+
             } else if (topCard.getValue().equals(Value.KING)) {
+
+                System.out.println(this.direction);
+                System.out.println(this.nextPlayerIndex);
+
                 this.toggleDirection();
                 changeStrike();
 
+                System.out.println(this.direction);
+                System.out.println(this.nextPlayerIndex);
+
             }  else if (topCard.getValue().equals(Value.QUEEN)) {
                 for(int i = 0; i < 2; i++) {
-                    players.get(nextPlayerIndex).getHand().add(drawPile.drawCard());
+                    players.get(this.nextPlayerIndex).getHand().add(drawPile.drawCard());
                 }
                 System.out.println("You have drawn 2 card");
                 System.out.println();
 
             } else {
                 for(int i = 0; i < 4; i++) {
-                    players.get(nextPlayerIndex).getHand().add(drawPile.drawCard());
+                    players.get(this.nextPlayerIndex).getHand().add(drawPile.drawCard());
                 }
                 System.out.println("You have drawn 4 card");
                 System.out.println();
@@ -134,25 +144,26 @@ public class Game {
         showHand();
 
         //get input for next card play
-        Player player = players.get(nextPlayerIndex);
+        Player player = players.get(this.nextPlayerIndex);
         int cardInd = player.makeMove();
 
         //draw new card
-        if(cardInd == 0) {
+        if(cardInd == -1) {
             player.getHand().add(drawPile.drawCard());
 
             //card index should be valid
-        } else if(cardInd <= player.getHandSize()) {
-            Card dropCard = player.getHand().get(cardInd - 1);
+        } else if(cardInd < player.getHandSize() && cardInd >= 0) {
+            Card dropCard = player.getHand().get(cardInd);
 
-            if(!discardPile.checkCard(dropCard)){
+            if(!discardPile.checkCard(dropCard)) {
                 System.out.println("*********!! Your card didn't match, Please choose a valid card !!*********");
                 showTopCard();
                 makeMove();
             }
 
+            prevTopCard = discardPile.getDiscardPile().peek();
             discardPile.getDiscardPile().push(dropCard);
-            player.getHand().remove(cardInd - 1);
+            player.getHand().remove(cardInd);
 
         } else {
             System.out.println("*********!! Please enter a valid card index !!*********");
@@ -164,19 +175,22 @@ public class Game {
     }
 
     private void toggleDirection() {
-        if(this.direction == Direction.POSITIVE)
+        if(this.direction == Direction.POSITIVE) {
             this.direction = Direction.NEGATIVE;
 
-        else
+        } else {
             this.direction = Direction.POSITIVE;
+        }
     }
 
     public void changeStrike() {
-        if(direction.equals(Direction.POSITIVE))
+
+        if(this.direction.equals(Direction.POSITIVE)) {
             this.nextPlayerIndex = (this.nextPlayerIndex + 1) % this.players.size();
 
-        else
+        } else {
             this.nextPlayerIndex = (this.nextPlayerIndex - 1 + this.players.size()) % players.size();
+        }
     }
 
     public boolean isActionCard() {
@@ -191,6 +205,14 @@ public class Game {
     }
 
     public void declareWinner(){
+
+        //because our index was already moved ahead so need to bring it back
+        if(this.direction.equals(Direction.POSITIVE)) {
+            this.nextPlayerIndex = (nextPlayerIndex + 1) % players.size();
+        } else {
+            this.nextPlayerIndex = (nextPlayerIndex - 1 + players.size()) % players.size();
+        }
+
         System.out.println("GAME OVER");
         System.out.println(players.get(nextPlayerIndex).getName() + " is the winner");
         System.exit(0);

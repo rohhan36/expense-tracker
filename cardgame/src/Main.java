@@ -22,12 +22,13 @@ public class Main {
             int playerCount = sc.nextInt();
             int initialCardCount = 5;
 
-//            try {
-//                gameController.validatePlayerCount(playerCount);
-//
-//            } catch (Exception e) {
-//                System.out.println("Please enter a valid numbers of players");
-//            }
+            try {
+                gameController.validatePlayerCount(playerCount);
+
+            } catch (Exception e) {
+                System.out.println("Please Enter Valid No of Players");
+                throw new InvalidPlayerCountException();
+            }
 
             for(int i = 0; i < playerCount; i++) {
 

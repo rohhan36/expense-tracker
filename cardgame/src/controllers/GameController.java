@@ -8,7 +8,8 @@ import java.util.List;
 public class GameController {
     Game game;
 
-    public GameController(){}
+    public GameController(){
+    }
     public Game startGame(List<Player> players, DrawPile drawPile) throws DrawPileEmptyException {
         return new Game(players, drawPile).build();
     }
@@ -42,6 +43,7 @@ public class GameController {
     }
 
     public void validatePlayerCount(int playerCount) throws InvalidPlayerCountException {
-        game.validatePlayerCount(playerCount);
+        if(playerCount < 2 || playerCount > 4)
+            throw new InvalidPlayerCountException();
     }
 }

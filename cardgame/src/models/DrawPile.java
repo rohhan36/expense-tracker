@@ -18,10 +18,9 @@ public class DrawPile {
     }
     public Card drawCard(){
         if(drawPile.isEmpty()) {
-            System.out.println("----- GAME OVER | DRAW PILE EMPTY | NO ONE WINS");
+            System.out.println("----- GAME OVER | DRAW PILE EMPTY | NO ONE WINS -----");
             System.exit(0);
         }
-
         return drawPile.pop();
     }
 
