@@ -13,7 +13,7 @@ public class Card {
     }
 
     public String toString(Card card) {
-        return card.cardType + "_" + card.cardSuit + "_" + card.cardType;
+        return card.cardType + "_" + card.cardSuit + "_" + card.cardValue;
     }
 
     public CardSuit getCardSuit() {
