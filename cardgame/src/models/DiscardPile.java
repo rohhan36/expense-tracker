@@ -1,24 +1,29 @@
 package models;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Stack;
 
 public class DiscardPile {
-    private List<Card> discardPile;
+    private Stack<Card> discardPile;
 
     public DiscardPile(){
-        discardPile = new ArrayList<>();
+        discardPile = new Stack<>();
     }
 
-    public void add(Card card) {
-        this.discardPile.add(card);
+    public void push(Card card) {
+        this.discardPile.push(card);
     }
 
-    public List<Card> getDiscardPile() {
+    public Stack<Card> getDiscardPile() {
         return discardPile;
     }
 
-    public void setDiscardPile(List<Card> discardPile) {
+    public void setDiscardPile(Stack<Card> discardPile) {
         this.discardPile = discardPile;
+    }
+
+    public boolean checkCard(Card dropCard) {
+        Card topCard = discardPile.peek();
+        return topCard.getValue().equals(dropCard.getValue()) || topCard.getCardSuit().equals(dropCard.getCardSuit());
     }
 }

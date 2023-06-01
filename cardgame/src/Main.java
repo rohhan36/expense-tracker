@@ -16,9 +16,25 @@ public class Main {
             Deck deck = new Deck();
             DrawPile drawPile = new DrawPile(deck.getCardList());
 
-            GameController.startGame(players, drawPile);
+            Game game = gameController.startGame(players, drawPile);
             System.out.println(players.size() + " Game Started");
 
+            while (gameController.checkGameState(game).equals(GameState.IN_PROGRESS)) {
+
+                //asks next player to have his/her turn
+                gameController.askPlayer();
+                System.out.println();
+
+                //shows the hand of next player
+                gameController.showHand(game);
+                System.out.println();
+
+                gameController.makeMove(game);
+                gameController.changeStrike(game);
+
+
+
+            }
         } catch (Exception e){
             System.out.println("Something went wrong!!");
         }

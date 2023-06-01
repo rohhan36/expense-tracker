@@ -1,29 +1,38 @@
 package controllers;
 import exeptions.InvalidPlayerCountException;
-import models.DrawPile;
-import models.Game;
-import models.Player;
+import models.*;
+
 import java.util.List;
 
 public class GameController {
     Game game;
-    public static Game startGame(List<Player> players, DrawPile drawPile) throws InvalidPlayerCountException {
+
+    public GameController(){}
+    public Game startGame(List<Player> players, DrawPile drawPile) throws InvalidPlayerCountException {
         return new Game(players, drawPile).build();
     }
 
-    void makeMove(Game game) {
-
+    public void makeMove(Game game) {
+        game.makeMove();
     }
 
-    void showHand(Game game) {
-
+    public void showHand(Game game) {
+        game.showHand();
     }
 
-    void checkGameState(Game game) {
-
+    public GameState checkGameState(Game game) {
+        return game.getGameState();
     }
 
     void getWinner(Game game) {
 
+    }
+
+    public void askPlayer() {
+        game.askPlayer();
+    }
+
+    public void changeStrike(Game game) {
+        game.changeStrike();
     }
 }

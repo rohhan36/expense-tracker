@@ -7,10 +7,10 @@ public class Hand {
     private List<Card> hand;
 
     public Hand() {
-        hand = new ArrayList<>();
+        this.hand = new ArrayList<>();
     }
 
-    public List<Card> getHand() {
+     public List<Card> getHand() {
         return hand;
     }
 
