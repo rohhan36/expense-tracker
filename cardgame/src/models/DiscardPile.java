@@ -26,4 +26,11 @@ public class DiscardPile {
         Card topCard = discardPile.peek();
         return topCard.getValue().equals(dropCard.getValue()) || topCard.getCardSuit().equals(dropCard.getCardSuit());
     }
+
+    public void showTopCard() {
+        Card currCard = discardPile.peek();
+        System.out.print("--------------------(");
+        System.out.print("Current card is " + currCard.getValue() + " of " + currCard.getCardSuit());
+        System.out.print(")--------------------");
+    }
 }

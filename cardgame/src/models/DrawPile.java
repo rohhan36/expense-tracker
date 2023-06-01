@@ -1,5 +1,7 @@
 package models;
 
+import exeptions.DrawPileEmptyException;
+
 import java.util.List;
 import java.util.Stack;
 
@@ -14,10 +16,9 @@ public class DrawPile {
             drawPile.push(card);
         }
     }
-    public Card drawCard() {
+    public Card drawCard() throws DrawPileEmptyException {
         if(drawPile.isEmpty()) {
-            System.out.println("---------- GAME OVER : DRAW PILE IS EMPTY : NO ONE WINS ----------");
-            System.exit(0);
+            throw new DrawPileEmptyException();
         }
 
         return drawPile.pop();

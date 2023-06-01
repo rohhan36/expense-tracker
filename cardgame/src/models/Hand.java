@@ -17,4 +17,8 @@ public class Hand {
     public void setHand(List<Card> hand) {
         this.hand = hand;
     }
+
+    public void add(Card card) {
+        this.hand.add(card);
+    }
 }

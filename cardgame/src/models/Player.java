@@ -65,7 +65,16 @@ public class Player {
     public void showHand() {
         for(int i = 0; i < this.hand.getHand().size(); i++){
             Card card = this.hand.getHand().get(i);
-            System.out.println(i+1 + " " + card.getValue() + " of " + card.getCardSuit());
+            System.out.println(i+1 + ": " + card.getValue() + " of " + card.getCardSuit());
         }
+    }
+
+
+    public boolean isWinner() {
+        return this.hand.getHand().size() == 0;
+    }
+
+    public String toString(){
+        return this.playerId + "_" + this.name + "_";
     }
 }

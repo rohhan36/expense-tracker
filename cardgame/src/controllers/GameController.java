@@ -1,4 +1,5 @@
 package controllers;
+import exeptions.DrawPileEmptyException;
 import exeptions.InvalidPlayerCountException;
 import models.*;
 
@@ -8,7 +9,7 @@ public class GameController {
     Game game;
 
     public GameController(){}
-    public Game startGame(List<Player> players, DrawPile drawPile) throws InvalidPlayerCountException {
+    public Game startGame(List<Player> players, DrawPile drawPile) throws DrawPileEmptyException {
         return new Game(players, drawPile).build();
     }
 
@@ -24,15 +25,23 @@ public class GameController {
         return game.getGameState();
     }
 
-    void getWinner(Game game) {
-
+    public void isWinner(Game game) {
+        game.isWinner();
     }
 
-    public void askPlayer() {
+    public void askPlayer(Game game) {
         game.askPlayer();
     }
 
     public void changeStrike(Game game) {
         game.changeStrike();
+    }
+
+    public void showTopCard(Game game) {
+        game.showTopCard();
+    }
+
+    public void validatePlayerCount(int playerCount) throws InvalidPlayerCountException {
+        game.validatePlayerCount(playerCount);
     }
 }

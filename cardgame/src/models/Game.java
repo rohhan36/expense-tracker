@@ -1,5 +1,6 @@
 package models;
 
+import exeptions.DrawPileEmptyException;
 import exeptions.InvalidPlayerCountException;
 
 import java.util.List;
@@ -16,22 +17,24 @@ public class Game {
 
     public Game(){}
 
-    public Game(List<Player> players, DrawPile drawPile){
+    public Game(List<Player> players, DrawPile drawPile) throws DrawPileEmptyException {
         this.gameState = GameState.IN_PROGRESS;
         this.direction = Direction.POSITIVE;
         this.players = players;
         this.drawPile = drawPile;
         this.discardPile = new DiscardPile();
         this.nextPlayerIndex = 0;
+
+        Card first = drawPile.drawCard();
+        discardPile.push(first);
     }
 
-    public void validatePlayerCount() throws InvalidPlayerCountException{
-        if(players.size() < 1 || players.size() > 4)
+    public void validatePlayerCount(int playerCount) throws InvalidPlayerCountException{
+        if(playerCount < 2 || playerCount > 4)
             throw new InvalidPlayerCountException();
     }
 
-    public Game build() throws InvalidPlayerCountException {
-        validatePlayerCount();
+    public Game build() throws DrawPileEmptyException {
         return new Game(players, drawPile);
     }
 
@@ -95,12 +98,14 @@ public class Game {
     }
 
     public void askPlayer() {
-        System.out.println(players.get(getNextPlayer()).getName() + "'s turn");
+        System.out.println();
+        System.out.println("--------------------> " + players.get(getNextPlayer()).getName() + "'s turn <--------------------");
     }
 
     public void makeMove() {
 
         if(isActionCard()) {
+
             Card topCard = discardPile.getDiscardPile().peek();
             if(topCard.getValue().equals(Value.ACE)) {
                 changeStrike();
@@ -111,13 +116,21 @@ public class Game {
 
             }  else if (topCard.getValue().equals(Value.QUEEN)) {
                 for(int i = 0; i < 2; i++) {
-                    players.get(nextPlayerIndex).getHand().add(drawPile.drawCard());
+                    try {
+                        players.get(nextPlayerIndex).getHand().add(drawPile.drawCard());
+                    } catch (Exception e){
+                        this.gameState = GameState.DRAW;
+                    }
                 }
                 System.out.println("You have drawn 2 card");
 
             } else {
                 for(int i = 0; i < 4; i++) {
-                    players.get(nextPlayerIndex).getHand().add(drawPile.drawCard());
+                    try {
+                        players.get(nextPlayerIndex).getHand().add(drawPile.drawCard());
+                    } catch (Exception e) {
+                        this.gameState = GameState.DRAW;
+                    }
                 }
                 System.out.println("You have drawn 4 card");
             }
@@ -127,7 +140,11 @@ public class Game {
         int cardInd = player.makeMove();
 
         if(cardInd == 0) {
-            player.getHand().add(drawPile.drawCard());
+            try {
+                player.getHand().add(drawPile.drawCard());
+            } catch (Exception e){
+                this.gameState = GameState.DRAW;
+            }
 
         } else {
             Card dropCard = player.getHand().get(cardInd - 1);
@@ -153,5 +170,32 @@ public class Game {
     public boolean isActionCard() {
         Card currCard = this.discardPile.getDiscardPile().peek();
         return currCard.getCardType().equals(CardType.ACTION);
+    }
+
+    public void isWinner() {
+        if(players.get(nextPlayerIndex).isWinner()){
+            this.gameState = GameState.WIN;
+        }
+    }
+
+    public void declareWinner(){
+        System.out.println("GAME OVER");
+        System.out.println(players.get(nextPlayerIndex).getName() + " is the winner");
+        System.exit(0);
+    }
+
+    public void declareDraw() {
+        System.out.println("GAME OVER");
+        System.out.println("No one is winner");
+        System.out.println();
+        System.exit(0);
+    }
+
+    public void showTopCard() {
+        discardPile.showTopCard();
+    }
+
+    public String toString(){
+        return this.gameState + " " + this.direction + " " + this.nextPlayerIndex + " " + this.drawPile.getDrawPile().peek().toString();
     }
 }

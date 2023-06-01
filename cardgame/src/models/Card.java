@@ -13,8 +13,8 @@ public class Card {
         this.cardValue = cardValue;
     }
 
-    public String toString(Card card) {
-        return card.cardType + "_" + card.cardSuit + "_" + card.cardValue;
+    public String toString() {
+        return this.cardType + "_" + this.cardSuit + "_" + this.cardValue;
     }
 
     public CardSuit getCardSuit() {
