@@ -2,8 +2,19 @@ package models;
 
 public class Card {
     private CardSuit cardSuit;
-    private String value;
+    private Value cardValue;
     private CardType cardType;
+
+
+    public Card(CardType cardType, CardSuit cardSuit, Value cardValue) {
+        this.cardType = cardType;
+        this.cardSuit = cardSuit;
+        this.cardValue = cardValue;
+    }
+
+    public String toString(Card card) {
+        return card.cardType + "_" + card.cardSuit + "_" + card.cardType;
+    }
 
     public CardSuit getCardSuit() {
         return cardSuit;
@@ -13,12 +24,12 @@ public class Card {
         this.cardSuit = cardSuit;
     }
 
-    public String getValue() {
-        return value;
+    public Value getValue() {
+        return cardValue;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public void setValue(Value value) {
+        this.cardValue = value;
     }
 
     public CardType getCardType() {

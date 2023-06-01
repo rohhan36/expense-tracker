@@ -1,6 +1,5 @@
 package models;
 
 public enum Direction {
-    POSITIVE,
-    NEGATIVE,
+    POSITIVE, NEGATIVE,
 }
