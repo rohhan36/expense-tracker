@@ -6,6 +6,8 @@ import java.util.Stack;
 public class DrawPile {
     private Stack<Card> drawPile;
 
+    public DrawPile(){}
+
     public DrawPile(List<Card> deck) {
         drawPile = new Stack<>();
         for(Card card : deck) {

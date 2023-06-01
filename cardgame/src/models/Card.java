@@ -5,6 +5,7 @@ public class Card {
     private Value cardValue;
     private CardType cardType;
 
+    public Card(){}
 
     public Card(CardType cardType, CardSuit cardSuit, Value cardValue) {
         this.cardType = cardType;

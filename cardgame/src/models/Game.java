@@ -1,7 +1,8 @@
 package models;
 
+import exeptions.InvalidPlayerCountException;
+
 import java.util.List;
-import java.util.Stack;
 
 public class Game {
     private List<Player> players;
@@ -10,8 +11,29 @@ public class Game {
     private Direction direction;
     private DrawPile drawPile;
     private DiscardPile discardPile;
-    private int nextPlayer;
+    private int nextPlayerIndex;
+    private Player winner;
 
+    public Game(){}
+
+    public Game(List<Player> players, DrawPile drawPile){
+        this.gameState = GameState.IN_PROGRESS;
+        this.direction = Direction.POSITIVE;
+        this.players = players;
+        this.drawPile = drawPile;
+        this.discardPile = new DiscardPile();
+        this.nextPlayerIndex = 0;
+    }
+
+    public void validatePlayerCount() throws InvalidPlayerCountException{
+        if(players.size() < 1 || players.size() > 4)
+            throw new InvalidPlayerCountException();
+    }
+
+    public Game build() throws InvalidPlayerCountException {
+        validatePlayerCount();
+        return new Game(players, drawPile);
+    }
     public List<Player> getPlayers() {
         return players;
     }
@@ -61,10 +83,10 @@ public class Game {
     }
 
     public int getNextPlayer() {
-        return nextPlayer;
+        return nextPlayerIndex;
     }
 
     public void setNextPlayer(int nextPlayer) {
-        this.nextPlayer = nextPlayer;
+        this.nextPlayerIndex = nextPlayer;
     }
 }

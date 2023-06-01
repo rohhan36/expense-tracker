@@ -16,9 +16,6 @@ public class Deck {
         this.cardList = cardList;
     }
 
-    public int getSize(){
-        return deckSize;
-    }
     public Deck() {
         cardList = new ArrayList<>();
         CardSuit[] cardSuits = CardSuit.values();
@@ -32,5 +29,8 @@ public class Deck {
         }
         deckSize =  cardList.size();
         Collections.shuffle(cardList);
+    }
+    public int getSize(){
+        return deckSize;
     }
 }

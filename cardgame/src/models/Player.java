@@ -5,6 +5,13 @@ public class Player {
     private Hand hand;
     private PlayerType playerType;
 
+    public Player(){}
+
+    public Player(int playerId, Hand hand, PlayerType playerType) {
+        this.playerId = playerId;
+        this.hand = hand;
+        this.playerType = playerType;
+    }
     public int getPlayerId() {
         return playerId;
     }
