@@ -43,7 +43,7 @@ public class GameController {
     }
 
     public void validatePlayerCount(int playerCount) throws InvalidPlayerCountException {
-        if(playerCount < 2 || playerCount > 4)
+        if(playerCount < 1 || playerCount > 4)
             throw new InvalidPlayerCountException();
     }
 

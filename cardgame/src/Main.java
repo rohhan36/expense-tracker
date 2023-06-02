@@ -5,7 +5,6 @@ import exeptions.InvalidPlayerCountException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.concurrent.ExecutionException;
 
 public class Main {
     public static void main(String[] args){
@@ -40,6 +39,17 @@ public class Main {
                 hand.getInitialHand(initialHandSize, drawPile); //gets initial cards, 5 int this case
                 Player player = new Player(i, hand, PlayerType.HUMAN, sc.next());
                 players.add(player);
+            }
+
+            if(playerCount == 1) {
+                Hand hand = new Hand();
+                hand.getInitialHand(initialHandSize, drawPile);
+                Player bot = new Bot(1, hand);
+                players.add(bot);
+            }
+
+            for(Player player : players){
+                System.out.println(player.toString());
             }
 
             Game game = gameController.startGame(players, drawPile);

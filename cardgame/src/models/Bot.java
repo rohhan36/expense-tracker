@@ -1,17 +1,18 @@
 package models;
 
-import strategies.BotPlayingStrategy;
-
 public class Bot extends Player {
-    private BotPlayingStrategy botPlayingStrategy;
-    public Bot(){}
+     public Bot(){}
 
-    public Bot(int playerId, Hand hand, PlayerType playerType, String name) {
-        super(playerId, hand, PlayerType.BOT, "ChatGPT");
+    public Bot(int playerId, Hand hand) {
+        super(playerId, hand, PlayerType.BOT, "chatGPT");
     }
 
-    @Override
     public int makeMove(Card card) {
-        return botPlayingStrategy.makeMove(this.getHand() , card);
+        for(int i = 0; i < getHand().size(); i++) {
+            Card currCard = getHand().get(i);
+            if(currCard.getCardSuit().equals(card.getCardSuit()) || currCard.getValue().equals(card.getValue()))
+                return i + 1;
+        }
+        return 0;
     }
 }
