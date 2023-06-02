@@ -48,10 +48,6 @@ public class Main {
                 players.add(bot);
             }
 
-            for(Player player : players){
-                System.out.println(player.toString());
-            }
-
             Game game = gameController.startGame(players, drawPile);
 
             while (gameController.checkGameState(game).equals(GameState.IN_PROGRESS)) {

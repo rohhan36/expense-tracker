@@ -78,4 +78,10 @@ public class Player {
     public String toString(){
         return this.playerId + "_" + this.name + "_";
     }
+
+    public void drawCads(int num, DrawPile drawPile) {
+        for(int i = 0; i < num; i++) {
+            this.hand.getHand().add(drawPile.drawCard());
+        }
+    }
 }

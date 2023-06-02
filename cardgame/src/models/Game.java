@@ -16,9 +16,14 @@ public class Game {
     private Player winner;
     private Card prevTopCard;
 
-    public Game(){}
+    public Game(){
+        this.gameState = GameState.IN_PROGRESS;
+        this.direction = Direction.POSITIVE;
+        this.discardPile = new DiscardPile();
+        this.nextPlayerIndex = 0;
+    }
 
-    public Game(List<Player> players, DrawPile drawPile) throws DrawPileEmptyException {
+    public Game(List<Player> players, DrawPile drawPile) {
         this.gameState = GameState.IN_PROGRESS;
         this.direction = Direction.POSITIVE;
         this.players = players;
@@ -135,7 +140,7 @@ public class Game {
         }
     }
 
-    private void toggleDirection() {
+    public void toggleDirection() {
         if(this.direction == Direction.POSITIVE) {
             this.direction = Direction.NEGATIVE;
 
@@ -174,16 +179,12 @@ public class Game {
                 changeStrike();
 
             } else if (topCard.getValue().equals(Value.QUEEN)) {
-                for (int i = 0; i < 2; i++) {
-                    currPlayer.getHand().add(drawPile.drawCard());
-                }
+                currPlayer.drawCads(2, drawPile);
                 System.out.println(currPlayer.getName() + " has drawn 2 cards");
                 System.out.println();
 
             } else {
-                for (int i = 0; i < 4; i++) {
-                    currPlayer.getHand().add(drawPile.drawCard());
-                }
+                currPlayer.drawCads(4, drawPile);
                 System.out.println(currPlayer.getName() + " has drawn 4 cards, LOL!");
                 System.out.println();
             }

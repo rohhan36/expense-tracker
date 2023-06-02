@@ -17,13 +17,13 @@ public class Deck {
     }
 
     public Deck() {
-        cardList = new ArrayList<>();
+        this.cardList = new ArrayList<>();
         CardSuit[] cardSuits = CardSuit.values();
         Value[] cardValues = Value.values();
 
-        for(int i = 0; i < cardSuits.length; i++) {
+        for(CardSuit suit : CardSuit.values()) {
             for(int j = 0; j < cardValues.length; j++) {
-                Card card = new Card(j < 9 ? CardType.NUMBER : CardType.ACTION, cardSuits[i], cardValues[j]);
+                Card card = new Card(j < 9 ? CardType.NUMBER : CardType.ACTION, suit, cardValues[j]);
                 cardList.add(card);
             }
         }
