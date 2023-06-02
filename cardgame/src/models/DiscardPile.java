@@ -28,10 +28,14 @@ public class DiscardPile {
     }
 
     public void showTopCard() {
-        Card currCard = discardPile.peek();
+        Card currCard = this.discardPile.peek();
         System.out.print("--------------------(");
         System.out.print("Current card is " + currCard.getValue() + " of " + currCard.getCardSuit());
         System.out.print(")--------------------");
         System.out.println();
+    }
+
+    public Card getTopCard() {
+        return this.discardPile.peek();
     }
 }

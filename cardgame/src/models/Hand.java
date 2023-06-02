@@ -21,4 +21,14 @@ public class Hand {
     public void add(Card card) {
         this.hand.add(card);
     }
+
+    public void getInitialHand(int initialHandSize, DrawPile drawPile) {
+        for(int i = 0; i < initialHandSize; i++) {
+            this.hand.add(drawPile.drawCard());
+        }
+    }
+
+    public int size() {
+        return this.hand.size();
+    }
 }

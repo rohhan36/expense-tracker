@@ -21,7 +21,7 @@ public class Main {
 
             List<Player> players = new ArrayList<>();
             int playerCount = sc.nextInt();
-            int initialCardCount = 5;
+            int initialHandSize = 5;
 
             try {
                 gameController.validatePlayerCount(playerCount);
@@ -33,15 +33,12 @@ public class Main {
 
             for(int i = 0; i < playerCount; i++) {
 
-                Hand hand = new Hand();
-                for(int j = 0; j < initialCardCount; j++) {
-                    hand.add(drawPile.drawCard());
-                }
-
                 System.out.print("Please Enter the name of player no " + (i + 1));
                 System.out.println();
-                Player player = new Player(i, hand, PlayerType.HUMAN, sc.next());
 
+                Hand hand = new Hand();
+                hand.getInitialHand(initialHandSize, drawPile); //gets initial cards, 5 int this case
+                Player player = new Player(i, hand, PlayerType.HUMAN, sc.next());
                 players.add(player);
             }
 

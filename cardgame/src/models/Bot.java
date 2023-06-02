@@ -1,6 +1,9 @@
 package models;
 
+import strategies.BotPlayingStrategy;
+
 public class Bot extends Player {
+    private BotPlayingStrategy botPlayingStrategy;
     public Bot(){}
 
     public Bot(int playerId, Hand hand, PlayerType playerType, String name) {
@@ -8,7 +11,7 @@ public class Bot extends Player {
     }
 
     @Override
-    public int makeMove() {
-        return super.makeMove();
+    public int makeMove(Card card) {
+        return botPlayingStrategy.makeMove(this.getHand() , card);
     }
 }

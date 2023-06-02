@@ -55,9 +55,9 @@ public class Player {
         this.name = name;
     }
 
-    public int makeMove() {
+    public int makeMove(Card card) {
         System.out.println("Choose the index of the card you want to play: ");
-        System.out.println("If you don't have a matching card, Please enter 0");
+        System.out.println("If you don't have a matching card, Please enter 0 to draw a card");
         int cardInd = sc.nextInt();
         return cardInd;
     }

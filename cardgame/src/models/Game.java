@@ -104,12 +104,12 @@ public class Game {
 
         //get input for next card play
         Player player = players.get(this.nextPlayerIndex);
-        int cardInd = player.makeMove();
+        int cardInd = player.makeMove(this.discardPile.getTopCard());
 
         //draw new card
         if(cardInd == 0) {
             player.getHand().add(drawPile.drawCard());
-
+            System.out.println(player.getName() + " has drawn a card");
             //card index should be valid
         } else if(cardInd <= player.getHandSize() && cardInd > 0) {
             Card dropCard = player.getHand().get(cardInd - 1);
@@ -123,6 +123,7 @@ public class Game {
                 prevTopCard = discardPile.getDiscardPile().peek();
                 discardPile.getDiscardPile().push(dropCard);
                 player.getHand().remove(cardInd - 1);
+                System.out.println("................ " + player.getName() + "'s card matched ................");
             }
 
         } else {
@@ -206,13 +207,13 @@ public class Game {
             this.nextPlayerIndex = (nextPlayerIndex - 1 + players.size()) % players.size();
         }
 
-        System.out.println("GAME OVER");
-        System.out.println(players.get(nextPlayerIndex).getName() + " is the winner");
+        System.out.println("------- GAME OVER ---------");
+        System.out.println("HUURRAAYY!! " + players.get(nextPlayerIndex).getName() + " is the winner");
         System.exit(0);
     }
 
     public void declareDraw() {
-        System.out.println("GAME OVER");
+        System.out.println("-------- GAME OVER --------");
         System.out.println("No one is winner");
         System.out.println();
         System.exit(0);
