@@ -17,6 +17,11 @@ public class Card {
         return this.cardType + "_" + this.cardSuit + "_" + this.cardValue;
     }
 
+    public boolean isActionCard(){
+        return this.getValue().equals(Value.QUEEN) || this.getValue().equals(Value.JACK) ||
+                this.getValue().equals(Value.ACE) || this.getValue().equals(Value.KING);
+    }
+
     public CardSuit getCardSuit() {
         return cardSuit;
     }

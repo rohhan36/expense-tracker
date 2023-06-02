@@ -23,7 +23,7 @@ public class DiscardPile {
     }
 
     public boolean checkCard(Card dropCard) {
-        Card topCard = discardPile.peek();
+        Card topCard = this.discardPile.peek();
         return topCard.getValue().equals(dropCard.getValue()) || topCard.getCardSuit().equals(dropCard.getCardSuit());
     }
 

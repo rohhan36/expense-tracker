@@ -10,7 +10,8 @@ import java.util.concurrent.ExecutionException;
 public class Main {
     public static void main(String[] args){
 
-        System.out.println("Please enter number of players: ");
+        System.out.print("Please enter number of players: ");
+        System.out.println();
         Scanner sc = new Scanner(System.in);
         GameController gameController = new GameController();
 
@@ -26,7 +27,7 @@ public class Main {
                 gameController.validatePlayerCount(playerCount);
 
             } catch (Exception e) {
-                System.out.println("Please Enter Valid No of Players");
+                System.out.println("Please Enter Valid No of Players: ");
                 throw new InvalidPlayerCountException();
             }
 
@@ -37,7 +38,8 @@ public class Main {
                     hand.add(drawPile.drawCard());
                 }
 
-                System.out.println("Please Enter the name of player no " + (i + 1));
+                System.out.print("Please Enter the name of player no " + (i + 1));
+                System.out.println();
                 Player player = new Player(i, hand, PlayerType.HUMAN, sc.next());
 
                 players.add(player);
@@ -47,12 +49,14 @@ public class Main {
 
             while (gameController.checkGameState(game).equals(GameState.IN_PROGRESS)) {
 
-                //asks next player to have his/her turn
-                gameController.askPlayer(game);
-                System.out.println();
-
                 //shows top card on the discard pile
                 gameController.showTopCard(game);
+                System.out.println();
+
+                gameController.isActionCard(game);
+
+                //asks next player to have his/her turn
+                gameController.askPlayer(game);
                 System.out.println();
 
                 gameController.makeMove(game);

@@ -46,4 +46,8 @@ public class GameController {
         if(playerCount < 2 || playerCount > 4)
             throw new InvalidPlayerCountException();
     }
+
+    public void isActionCard(Game game) {
+        game.isActionCard();
+    }
 }

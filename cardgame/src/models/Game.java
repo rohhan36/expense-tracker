@@ -87,7 +87,7 @@ public class Game {
     }
 
     public int getNextPlayer() {
-        return nextPlayerIndex;
+        return this.nextPlayerIndex;
     }
 
     public void setNextPlayer(int nextPlayer) {
@@ -95,51 +95,10 @@ public class Game {
     }
 
     public void askPlayer() {
-        System.out.println();
-        System.out.println("--------------------> " + players.get(getNextPlayer()).getName() + "'s turn <--------------------");
+        System.out.println("--------------------> " + players.get(this.nextPlayerIndex).getName() + "'s turn <--------------------");
     }
 
     public void makeMove() {
-
-        //if it's an action card and this is Not the 1st move of the game
-        if(isActionCard() && discardPile.getDiscardPile().size() > 1 && discardPile.checkCard(prevTopCard)) {
-
-            Card topCard = discardPile.getDiscardPile().peek();
-            if(topCard.getValue().equals(Value.ACE)) {
-                System.out.println(this.direction);
-                System.out.println(this.nextPlayerIndex);
-
-                changeStrike();
-
-                System.out.println(this.direction);
-                System.out.println(this.nextPlayerIndex);
-
-            } else if (topCard.getValue().equals(Value.KING)) {
-
-                System.out.println(this.direction);
-                System.out.println(this.nextPlayerIndex);
-
-                this.toggleDirection();
-                changeStrike();
-
-                System.out.println(this.direction);
-                System.out.println(this.nextPlayerIndex);
-
-            }  else if (topCard.getValue().equals(Value.QUEEN)) {
-                for(int i = 0; i < 2; i++) {
-                    players.get(this.nextPlayerIndex).getHand().add(drawPile.drawCard());
-                }
-                System.out.println("You have drawn 2 card");
-                System.out.println();
-
-            } else {
-                for(int i = 0; i < 4; i++) {
-                    players.get(this.nextPlayerIndex).getHand().add(drawPile.drawCard());
-                }
-                System.out.println("You have drawn 4 card");
-                System.out.println();
-            }
-        }
 
         showHand();
 
@@ -148,22 +107,23 @@ public class Game {
         int cardInd = player.makeMove();
 
         //draw new card
-        if(cardInd == -1) {
+        if(cardInd == 0) {
             player.getHand().add(drawPile.drawCard());
 
             //card index should be valid
-        } else if(cardInd < player.getHandSize() && cardInd >= 0) {
-            Card dropCard = player.getHand().get(cardInd);
+        } else if(cardInd <= player.getHandSize() && cardInd > 0) {
+            Card dropCard = player.getHand().get(cardInd - 1);
 
             if(!discardPile.checkCard(dropCard)) {
                 System.out.println("*********!! Your card didn't match, Please choose a valid card !!*********");
                 showTopCard();
                 makeMove();
-            }
 
-            prevTopCard = discardPile.getDiscardPile().peek();
-            discardPile.getDiscardPile().push(dropCard);
-            player.getHand().remove(cardInd);
+            } else {
+                prevTopCard = discardPile.getDiscardPile().peek();
+                discardPile.getDiscardPile().push(dropCard);
+                player.getHand().remove(cardInd - 1);
+            }
 
         } else {
             System.out.println("*********!! Please enter a valid card index !!*********");
@@ -193,9 +153,42 @@ public class Game {
         }
     }
 
-    public boolean isActionCard() {
-        Card currCard = this.discardPile.getDiscardPile().peek();
-        return currCard.getCardType().equals(CardType.ACTION);
+    //if it's an action card and this is Not the 1st move of the game
+    public void isActionCard() {
+        Card topCard = this.discardPile.getDiscardPile().peek();
+        Player currPlayer = this.players.get(this.nextPlayerIndex);
+        //if an actionCard is already been used it should not word other time it's on top of the discard pile
+        //if the 1st card on discardPile itself is an action card it should not affect the person making 1st move
+
+        if (topCard.isActionCard() && discardPile.getDiscardPile().size() > 1 && !topCard.equals(prevTopCard)) {
+
+            if (topCard.getValue().equals(Value.ACE)) {
+                System.out.println(currPlayer.getName() + "'s strike is been skipped XD");
+                changeStrike();
+
+            } else if (topCard.getValue().equals(Value.KING)) {
+                System.out.println("ALERT!! Strike direction is been changed");
+                this.toggleDirection();
+                changeStrike();
+                changeStrike();
+
+            } else if (topCard.getValue().equals(Value.QUEEN)) {
+                for (int i = 0; i < 2; i++) {
+                    currPlayer.getHand().add(drawPile.drawCard());
+                }
+                System.out.println(currPlayer.getName() + " has drawn 2 cards");
+                System.out.println();
+
+            } else {
+                for (int i = 0; i < 4; i++) {
+                    currPlayer.getHand().add(drawPile.drawCard());
+                }
+                System.out.println(currPlayer.getName() + " has drawn 4 cards, LOL!");
+                System.out.println();
+            }
+
+            this.prevTopCard = topCard; //prevents same action card from acting multiple times
+        }
     }
 
     public void isWinner() {
@@ -226,7 +219,7 @@ public class Game {
     }
 
     public void showTopCard() {
-        discardPile.showTopCard();
+        this.discardPile.showTopCard();
     }
 
     public String toString(){

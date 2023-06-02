@@ -57,7 +57,7 @@ public class Player {
 
     public int makeMove() {
         System.out.println("Choose the index of the card you want to play: ");
-        System.out.println("If you don't have a matching card, Please enter -1");
+        System.out.println("If you don't have a matching card, Please enter 0");
         int cardInd = sc.nextInt();
         return cardInd;
     }
@@ -65,7 +65,7 @@ public class Player {
     public void showHand() {
         for(int i = 0; i < this.hand.getHand().size(); i++){
             Card card = this.hand.getHand().get(i);
-            System.out.println(i + ": " + card.getValue() + " of " + card.getCardSuit());
+            System.out.println(i + 1 + ": " + card.getValue() + " of " + card.getCardSuit());
         }
         System.out.println();
     }
