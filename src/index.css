@@ -1,0 +1,254 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Noto Sans JP", sans-serif;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.expenses {
+  padding: 15px 20px;
+  background-color: #e7e8e9;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.card {
+  max-width: 700px;
+  border-radius: 25px;
+  margin: 1rem 1rem;
+}
+
+.expense-item {
+  padding: 0.8rem 1.2em;
+  width: 95%;
+  align-self: center;
+  margin: 5px 0px;
+  color: #3b475a;
+  background-color: white;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+}
+
+.expense-item > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 10px;
+}
+
+.expense-name {
+  font-weight: 600;
+}
+
+.amount {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.price {
+  font-size: large;
+}
+
+.date {
+  opacity: 0.4;
+  font-size: 12px;
+}
+
+.expense-logo {
+  border-radius: 50%;
+  background-color: #ef2e33;
+  height: 3rem;
+  width: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.health {
+  background: linear-gradient(rgb(97, 250, 179), rgb(1, 104, 53));
+}
+
+.food {
+  background: linear-gradient(rgb(248, 47, 47), rgb(124, 1, 1));
+}
+
+.shopping {
+  background: linear-gradient(rgb(149, 243, 255), rgb(2, 110, 114));
+}
+
+.travel {
+  background: linear-gradient(rgb(87, 255, 87), rgb(34, 143, 7));
+}
+
+.entertainment {
+  background: linear-gradient(rgb(255, 255, 10), rgb(255, 94, 0));
+}
+
+.home {
+  background: linear-gradient(rgb(250, 104, 238), rgb(131, 0, 148));
+}
+
+.insurance {
+  background: linear-gradient(rgb(245, 110, 193), rgb(119, 0, 109));
+}
+
+.other {
+  background: linear-gradient(rgb(99, 87, 255), rgb(17, 0, 112));
+}
+
+.expense-icon {
+  height: 1.5rem;
+}
+.new-expense-form {
+  border-radius: 20px;
+  background-color: #e7e8e9;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1.5rem;
+  gap: 20px;
+  justify-content: center;
+}
+.new-expense-controler {
+  padding: 2px;
+}
+
+.new-expense-form input {
+  border: none;
+  border-radius: 10px;
+  height: 40px;
+  width: 20em;
+  padding: 2px 10px;
+}
+
+.new-expense-form select {
+  grid-area: category;
+  border: none;
+  border-radius: 10px;
+  height: 40px;
+  width: 20em;
+  padding: 2px 10px;
+}
+.new-expense-form select > option {
+  padding: 5px;
+}
+
+.new-expense-buttons {
+  padding: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.form-btn {
+  width: 120px;
+}
+
+.new-expense-btn {
+  color: white;
+  padding: 0px 30px;
+  font-weight: 700;
+  border: none;
+  transition: 0.5s;
+  height: 40px;
+  border-radius: 20px;
+  transition: 0.3s;
+
+  background-size: 150% 150%;
+  background-image: linear-gradient(133deg, rgba(206, 104, 252, 1) 0%, rgba(254, 151, 109, 1) 110%);
+  -webkit-box-shadow: 0px 6px 10px -3px rgba(255, 161, 255, 1);
+  -moz-box-shadow: 0px 6px 10px -3px rgba(255, 161, 255, 1);
+  box-shadow: 0px 6px 10px -3px rgba(255, 161, 255, 1);
+}
+
+.new-expense-btn:hover {
+  cursor: pointer;
+  background-position: right center;
+  -webkit-box-shadow: 0px 6px 10px -3px rgba(254, 151, 109, 0.5);
+  -moz-box-shadow: 0px 6px 10px -3px rgba(254, 151, 109, 0.5);
+  box-shadow: 0px 6px 10px -3px rgba(254, 151, 109, 0.5);
+}
+
+.expense-filter {
+  width: 100px;
+  border: none;
+  border-radius: 10px;
+  padding: 5px 15px;
+  margin: 0.5rem 1rem;
+}
+
+.error-msg {
+  align-self: center;
+  font-weight: 600;
+}
+
+.add-new-expense-container {
+  width: 700px;
+  display: flex;
+  justify-content: center;
+  background-color: #e7e8e9;
+  padding: 20px;
+}
+
+.graph {
+  display: flex;
+  justify-content: space-between;
+  height: 15em;
+  width: 95%;
+  background-color: white;
+  padding: 0.8rem 1.2em;
+  align-self: center;
+}
+
+.graph-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.graph-area {
+  border-radius: 10px;
+  height: 90%;
+  width: 7px;
+  background-color: #e7e8e9;
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: column-reverse;
+  transition: 0.3s;
+}
+
+.graph-fill-area {
+  border-radius: 10px;
+  background-image: linear-gradient(133deg, rgba(206, 104, 252, 1) 0%, rgba(254, 151, 109, 1) 110%);
+}
+
+@media screen and (max-width: 615px) {
+  .new-expense-form input {
+    width: 18rem;
+  }
+  .new-expense-form select {
+    width: 18rem;
+  }
+
+  .add-new-expense-container {
+    width: 470px;
+  }
+
+  .graph-area {
+    width: 4px;
+  }
+
+  .graph-bar {
+    font-size: small;
+  }
+}
