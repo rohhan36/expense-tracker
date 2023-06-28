@@ -1,0 +1,41 @@
+[33mcommit 7ec122c62e4965a33c9e80b0b1c21ac106136280[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Rohan Vasava <rohanvasava6301@gmail.com>
+Date:   Thu Jun 1 15:53:41 2023 +0530
+
+    Finished Implementing Deck Class
+
+[33mcommit e85b4132d3f9b341f30e3c3fb088d96982b68fc0[m
+Author: Rohan Vasava <rohanvasava6301@gmail.com>
+Date:   Thu Jun 1 14:55:28 2023 +0530
+
+    Added getters and setters methods in the relevant claas
+
+[33mcommit db279144fc33e49f821486c21b1ab7b2babe79b0[m
+Author: Rohan Vasava <rohanvasava6301@gmail.com>
+Date:   Thu Jun 1 13:07:33 2023 +0530
+
+    Updated all the models with respective attributes
+
+[33mcommit 369afa740790b5c4bc16bc326a9fbee3c155412c[m
+Author: Rohan Vasava <rohanvasava6301@gmail.com>
+Date:   Thu Jun 1 11:46:46 2023 +0530
+
+    Created all the models
+
+[33mcommit 34e26a79e743bee8b732e5b14ae9a218f16508f3[m
+Author: Rohan Vasava <rohanvasava6301@gmail.com>
+Date:   Wed May 31 21:10:14 2023 +0530
+
+    Initial commit
+
+[33mcommit 88cb0abe8539c5ec168023f108db44ee578c63b9[m
+Author: Rohan Vasava <rohanvasava6301@gmail.com>
+Date:   Wed May 31 21:01:27 2023 +0530
+
+    Initial Commit
+
+[33mcommit ae5d663f1c0ef825fba907dfb8e1d5c3b74358b2[m
+Author: Rohan Vasava <rohanvasava6301@gmail.com>
+Date:   Wed May 31 20:16:45 2023 +0530
+
+    First Commit

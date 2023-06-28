@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+}
+
+.container{
+    background-color: black;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fill, 250px);
+    justify-content: center;
+}
+
+.card {
+    background-color: rgb(179, 0, 0);
+    width: 250px;
+    border-radius: 20px;
+}
+
+.small-card{
+    grid-row: span 25;
+}
+.medium-card{
+    grid-row: span 33;
+}
+.large-card{
+    grid-row: span 45;
+}

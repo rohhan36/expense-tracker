@@ -59,7 +59,6 @@ async function checkWeather(city){
     }
 }
 
-//
 function onInputChange() {
 
     removeAutoCompleteDropdown();
