@@ -57,7 +57,7 @@ const ExpenseForm = (props) => {
         <input type="text" className="new-expense-title" value={newTitle} onChange={titleChangeHandeler} placeholder="Title" required />
       </div>
       <div className="new-expense-controler">
-        <input type="date" className="new-expense-date" value={newDate} onChange={dateChangeHandeler} required />
+        <input type="date" className="new-expense-date" value={newDate} onChange={dateChangeHandeler} placeholder="Select date" required />
       </div>
 
       <select required onChange={categoryChangeHandeler} defaultValue={"DEFAULT"}>
